@@ -497,7 +497,7 @@
 
     //Calendar calls start
 
-        var CLIENT_ID = '379128109747-tfrqdiuvmaeq7m46ojahtfcdgavkv0e3.apps.googleusercontent.com';
+        var CLIENT_ID = '705090311833-g7arbk0k4rds033jdce4uleoieldaqva.apps.googleusercontent.com';
         var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
         function checkAuth() {
@@ -585,7 +585,7 @@
     //    Calendar calls end
 
     //  YouTube calls begin
-        var OAUTH2_CLIENT_ID = '379128109747-tfrqdiuvmaeq7m46ojahtfcdgavkv0e3.apps.googleusercontent.com';
+        var OAUTH2_CLIENT_ID = '705090311833-g7arbk0k4rds033jdce4uleoieldaqva.apps.googleusercontent.com';
         var OAUTH2_SCOPES = [
             'https://www.googleapis.com/auth/youtube'
         ];
@@ -635,12 +635,14 @@
     function initMap(src, dst, type){
         var iframe_string;
         if(type == 1) {
-            iframe_string = '<iframe id="maps_iframe" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyB7gxS5czwvhtXq8f7_y_o5eIhnmbO9ExE&origin=' + src + '&destination=' + dst + '&avoid=tolls|highways" allowfullscreen />';
+            iframe_string = '<iframe id="maps_iframe" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBQBK3oXMA6yuVWla9b8JLdYioK3Vlc8EQ&origin=' + src + '&destination=' + dst + '&avoid=tolls|highways" allowfullscreen />';
         } else if(type == 2 ){
-            iframe_string = '<iframe id="maps_iframe" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyB7gxS5czwvhtXq8f7_y_o5eIhnmbO9ExE&q='+src+'" allowfullscreen />';
+            iframe_string = '<iframe id="maps_iframe" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBQBK3oXMA6yuVWla9b8JLdYioK3Vlc8EQ&q='+src+'" allowfullscreen />';
         }
         $('#maps_div').html(iframe_string);
     }
     // Maps calls end
+	//AIzaSyBQBK3oXMA6yuVWla9b8JLdYioK3Vlc8EQ
 </script>
 </body>
+

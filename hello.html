@@ -87,6 +87,7 @@
             display: none;
             margin: 0 70px;
         }
+
     </style>
     <style>
         a.c1 {font-weight: normal;}
@@ -164,15 +165,17 @@
             </select>&nbsp;&nbsp; <select id="select_dialect">
         </select>
         </div>
+
         <div class="results_class" id="results_id">
             <pre id="results_par_id">
             </pre>
             <div id="youtube_div"></div>
+            <div id="maps_div">
+            </div>
         </div>
     </div>
 </div>
-<script src="https://apis.google.com/js/client.js">
-</script>
+<script src="https://apis.google.com/js/client.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="auth.js"></script>
 <script src="search.js"></script>
@@ -381,6 +384,12 @@
                 checkAuth();
             } else if(final_transcript.toLowerCase().indexOf("show me")>-1) {
                 checkYouTubeAuth();
+            } else if(final_transcript.toLowerCase().indexOf("directions")>-1){
+                first = final_transcript.indexOf("from");
+                second = final_transcript.indexOf("to");
+                src = final_transcript.substring(first+4, second);
+                dst = final_transcript.substring(second);
+                initMap(src, dst);
             }
             interim_span.innerHTML = linebreak(interim_transcript);
             if (final_transcript || interim_transcript) {
@@ -556,11 +565,15 @@
         function removeText() {
             var resultpar = document.getElementById('results_par_id');
             var youtube_div = document.getElementById('youtube_div');
+            var maps_div = document.getElementById('maps_div');
             if(resultpar != null) {
                 document.getElementById('results_par_id').innerHTML = "";
             }
             if(youtube_div != null) {
                 document.getElementById('youtube_div').innerHTML = "";
+            }
+            if(maps_div != null) {
+                document.getElementById('maps_div').innerHTML = "";
             }
         }
 
@@ -608,11 +621,17 @@
                 var par = JSON.parse(str);
                 var videoId = par.items[0].id.videoId;
 
-                var innerYoutubeHTML = '<iframe id="ytplayer" type="text/html" width="500" height="300" src="http://www.youtube.com/embed/'+ videoId + '?autoplay=1&origin=http://example.com" frameborder="0"/>';
+                var innerYoutubeHTML = '<iframe id="ytplayer" type="text/html" width="900" height="550" src="http://www.youtube.com/embed/'+ videoId + '?autoplay=1&origin=http://example.com" frameborder="0"/>';
                 $('#youtube_div').html(innerYoutubeHTML);
             });
         }
     //  YouTube calls end
-
+    // Maps calls start
+    function initMap(src, dst){
+        var innerYoutubeHTML = '<iframe id="maps_iframe" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyB7gxS5czwvhtXq8f7_y_o5eIhnmbO9ExE&origin='+src+'&destination='+dst+'&avoid=tolls|highways" allowfullscreen />';
+        //var innerYoutubeHTML = '<iframe id="ytplayer" type="text/html" width="900" height="550" src="http://www.youtube.com/embed/'+ videoId + '?autoplay=1&origin=http://example.com" frameborder="0"/>';
+        $('#maps_div').html(innerYoutubeHTML);
+    }
+    // Maps calls end
 </script>
 </body>

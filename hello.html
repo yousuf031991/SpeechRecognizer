@@ -165,7 +165,7 @@
             </select>&nbsp;&nbsp; <select id="select_dialect">
         </select>
         </div>
-
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <div class="results_class" id="results_id">
             <pre id="results_par_id">
             </pre>
@@ -173,9 +173,12 @@
             <div id="maps_div">
             </div>
         </div>
+        <input type="hidden" id="userEmail" value="">
     </div>
 </div>
 <script src="https://apis.google.com/js/client.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="705090311833-g7arbk0k4rds033jdce4uleoieldaqva.apps.googleusercontent.com">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="auth.js"></script>
 <script src="search.js"></script>
@@ -391,8 +394,6 @@
                 var dst = final_transcript.substring(second);
                 initMap(src, dst, 1);
             } else if(final_transcript.toLowerCase().indexOf("find me")>-1){
-//                var firststr = final_transcript.toLowerCase().indexOf("find me");
-//                console.log(firststr);
                 var secondstr = final_transcript.substring(7);
                 initMap(secondstr, "", 2);
             }
@@ -538,7 +539,7 @@
             date1 = moment(date1);
             date2 = moment(date2);
             var request = gapi.client.calendar.events.list({
-                'calendarId': "yousuf.031991@gmail.com",
+                'calendarId': document.getElementById("userEmail").value,
                 'timeMin': date1.format(),
                 'timeMax': date2.format(),
                 'singleEvents': true,
@@ -643,6 +644,18 @@
     }
     // Maps calls end
 	//AIzaSyBQBK3oXMA6yuVWla9b8JLdYioK3Vlc8EQ
+
+    // Sign in calls start
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        document.getElementById("userEmail").value = profile.getEmail();
+//        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//        console.log('Name: ' + profile.getName());
+//        console.log('Image URL: ' + profile.getImageUrl());
+//        console.log('Email: ' + profile.getEmail());
+    }
+
+    //sign in calls end
 </script>
 </body>
 

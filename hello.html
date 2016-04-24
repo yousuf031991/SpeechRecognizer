@@ -174,6 +174,7 @@
             </div>
         </div>
         <input type="hidden" id="userEmail" value="">
+        <div id="hangouts-div"></div>
     </div>
 </div>
 <script src="https://apis.google.com/js/client.js"></script>
@@ -183,7 +184,14 @@
 <script src="auth.js"></script>
 <script src="search.js"></script>
 <script src="/intl/en/chrome/assets/common/js/chrome.min.js">
-</script> <script>
+</script>
+<script>
+    window.___gcfg = {
+        lang: 'fr'
+        parsetags: 'onload'
+    };
+</script>
+<script>
     var chrmMenuBar = new chrm.ui.MenuBar();
     chrmMenuBar.decorate('nav');
     var chrmLogo = new chrm.ui.Logo('logo');
@@ -396,6 +404,12 @@
             } else if(final_transcript.toLowerCase().indexOf("find me")>-1){
                 var secondstr = final_transcript.substring(7);
                 initMap(secondstr, "", 2);
+            } else if(final_transcript.toLowerCase().indexOf("call")>-1){
+                console.log("CALL COMMAND RECEIVED")
+//                var hangouts_button = '<b> button </b>'
+//                $('#hangouts-div').html(hangouts_button);
+                renderHangoutButtons()
+                $("#test").click();
             }
             interim_span.innerHTML = linebreak(interim_transcript);
             if (final_transcript || interim_transcript) {
@@ -404,7 +418,12 @@
         };
     }
 
-
+    function renderHangoutButtons(){
+        gapi.hangout.render('hangouts-div', {
+            'render': 'createhangout',
+            'invites' : "[{'id': 'tniranjan@asu.edu','invite_type': 'EMAIL'}]"
+        });
+    }
     function upgrade() {
         start_button.style.visibility = 'hidden';
         showInfo('info_upgrade');
@@ -572,6 +591,7 @@
             var resultpar = document.getElementById('results_par_id');
             var youtube_div = document.getElementById('youtube_div');
             var maps_div = document.getElementById('maps_div');
+            var hangouts_div = document.getElementById('hangouts-div');
             if(resultpar != null) {
                 document.getElementById('results_par_id').innerHTML = "";
             }
@@ -580,6 +600,9 @@
             }
             if(maps_div != null) {
                 document.getElementById('maps_div').innerHTML = "";
+            }
+            if(hangouts_div != null) {
+                hangouts_div.innerHTML = "";
             }
         }
 

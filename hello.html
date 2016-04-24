@@ -22,6 +22,7 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel=
             "stylesheet">
     <link href="/intl/en/chrome/assets/common/css/chrome.min.css" rel="stylesheet">
+    <link href="hello.min.css" rel="stylesheet">
     <script src="//www.google.com/js/gweb/analytics/autotrack.js">
     </script>
     <script>
@@ -30,6 +31,32 @@
         });
     </script>
     <style>
+        #grid{
+          background-image: url("background2.png");
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-position-y: -50px;
+        }
+        #results{
+          background: white;
+          padding: 20px !important;
+        }
+        #results_id{
+          width: 130px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 0px;
+          border: none;
+        }
+        #info_start{
+          color:black;
+        }
+        .g-signin2{
+          position: fixed;
+          bottom : 30px;
+          left: 47%;
+        }
+        /* CSS changes by Digant */
         #info {
             font-size: 20px;
         }
@@ -165,6 +192,7 @@
             </select>&nbsp;&nbsp; <select id="select_dialect">
         </select>
         </div>
+
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <div class="results_class" id="results_id">
             <pre id="results_par_id">
@@ -681,4 +709,3 @@
     //sign in calls end
 </script>
 </body>
-

@@ -405,10 +405,11 @@
                 var secondstr = final_transcript.substring(7);
                 initMap(secondstr, "", 2);
             } else if(final_transcript.toLowerCase().indexOf("call")>-1){
-                console.log("CALL COMMAND RECEIVED")
+                console.log("CALL COMMAND RECEIVED");
+                var callee = final_transcript.substring(5);
 //                var hangouts_button = '<b> button </b>'
 //                $('#hangouts-div').html(hangouts_button);
-                renderHangoutButtons()
+                renderHangoutButtons(callee);
                 $("#test").click();
             }
             interim_span.innerHTML = linebreak(interim_transcript);
@@ -418,10 +419,10 @@
         };
     }
 
-    function renderHangoutButtons(){
+    function renderHangoutButtons(callee){
         gapi.hangout.render('hangouts-div', {
             'render': 'createhangout',
-            'invites' : "[{'id': 'tniranjan@asu.edu','invite_type': 'EMAIL'}]"
+            'invites' : "[{'id':" + callee + ",'invite_type': 'EMAIL'}]"
         });
     }
     function upgrade() {

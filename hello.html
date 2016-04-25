@@ -523,7 +523,7 @@
     function capitalize(s) {
         return s.replace(first_char, function(m) { return m.toUpperCase(); });
     }
-    function list_cricket_matches()
+    /*function list_cricket_matches()
     {
         $.getJSON("http://cricapi.com/api/cricket/", function(data, status){
             //alert("Data: " + data['data'][0]['title'] + "\nStatus: " + status + typeof(data));
@@ -541,7 +541,7 @@
 
             $(html).appendTo('#youtube_div');
         });
-    }
+    }*/
     function createEmail() {
         var n = final_transcript.indexOf('message');
         if (n < 0 || n >= 80) {
@@ -731,7 +731,7 @@
         }
             html += "</tr></table>";
             
-          $(html).appendTo('#weather_div');
+          $('#weather_div').html(html);
         });
     }
         var player;

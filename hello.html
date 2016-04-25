@@ -172,6 +172,7 @@
             <div id="youtube_div"></div>
             <div id="maps_div">
             </div>
+            <div id="weather_div"></div>
         </div>
         <input type="hidden" id="userEmail" value="">
         <div id="hangouts-div"></div>
@@ -415,6 +416,11 @@
 //                $('#hangouts-div').html(hangouts_button);
                 renderHangoutButtons(callee);
                 $("#test").click();
+            } else if(final_transcript.toLowerCase().indexOf("weather")>-1) {
+                // var index = final_transcript.indexOf("in")
+                // var substr = final_transcript.substring(index + 3);
+                initWeather();
+
             }
 
             interim_span.innerHTML = linebreak(interim_transcript);
@@ -616,6 +622,7 @@
             var youtube_div = document.getElementById('youtube_div');
             var maps_div = document.getElementById('maps_div');
             var hangouts_div = document.getElementById('hangouts-div');
+            var weather_div = document.getElementById('weather_div');
             if(resultpar != null) {
                 document.getElementById('results_par_id').innerHTML = "";
             }
@@ -627,6 +634,9 @@
             }
             if(hangouts_div != null) {
                 hangouts_div.innerHTML = "";
+            }
+            if(weather_div != null) {
+                document.getElementById('weather_div').innerHTML = "";
             }
         }
 
@@ -721,6 +731,27 @@
     }
 
     //sign in calls end
+
+    //weather starts
+    function initWeather() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+
+    }
+
+    function showPosition(position) {
+        var latitude =  position.coords.latitude;
+        var longitude = position.coords.longitude;
+        console.log(latitude);
+        console.log(longitude);
+        var iframeTime = '<iframe id="maps_iframe" width="100%" height="450" frameborder="0" style="border:0" src="http://forecast.io/embed/#lat='+latitude+'&lon='+longitude+'&name=your Location&color=#00aaff&font=Georgia&units=uk" allowfullscreen />';
+        console.log(iframeTime);
+        $('#weather_div').html(iframeTime);
+    }
+    //weather ends
 </script>
 </body>
 

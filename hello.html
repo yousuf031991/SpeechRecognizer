@@ -457,14 +457,7 @@
             }else if(final_transcript.toLowerCase().indexOf("continue")>-1) {
                   handleYoutubePlay();
 
-            }
-            else if(final_transcript.toLowerCase().indexOf("show me")>-1) {
-                document.getElementById('youtube_div').innerHTML = "";
-                var el = document.getElementById('id_hide');
-                el.setAttribute('data-videoId', "");
-                el.setAttribute('data-operation', "");
-                checkYouTubeAuth();
-            }  else if(final_transcript.toLowerCase().indexOf("play")>-1) {
+            } else if(final_transcript.toLowerCase().indexOf("play")>-1) {
                                 document.getElementById('youtube_div').innerHTML = "";
                 var el = document.getElementById('id_hide');
                 el.setAttribute('data-videoId', "");

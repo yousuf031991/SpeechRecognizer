@@ -1,5 +1,5 @@
 # Vehicle Speech Recognition Assistant
-##### A speech recognition application for SER 516 - Arizona State University <br />
+##### A speech recognition application for SER 516 - Arizona State University by Team 4 <br />
 Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
 ##### Commands
 * Maps

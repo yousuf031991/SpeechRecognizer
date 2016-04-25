@@ -12,7 +12,7 @@ Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
  * Mute - "Mute" **PENDING**
  * Next song - "Next song" **PENDING**
  * Close the video- "Close video" **PENDING**
-* Weather - "Weather" **PENDING**
-* Cricket scores
+* Weather - "Weather"
+* Cricket scores - "Cricket"
 * Time - **PENDING**
 * Google search - "Search [something]" **PENDING**

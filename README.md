@@ -11,6 +11,7 @@ Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
 * See YouTube videos - "Show me [video name]"
  * Mute - "Mute" **PENDING**
  * Next song - "Next song" **PENDING**
+ * Pause - "Pause video" **PENDING**
  * Close the video- "Close video" **PENDING**
 * Weather - "Weather"
 * Cricket scores - "Cricket"

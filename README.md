@@ -1,5 +1,5 @@
 # Vehicle Speech Recognition Assistant
-##### A speech recognition application for SER 516 <br />
+##### A speech recognition application for SER 516 - Arizona State University <br />
 Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
 ##### Commands
 * Maps
@@ -8,13 +8,12 @@ Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
   * Find current location" - "Where am I" 
 * Hangouts call - "Call [person name]"
 * Get your calendar for the week - "Schedule"
+* Weather - "Weather"
+* Cricket scores - "Cricket"
+* Time - "Time in [Any State in America]"
 * See YouTube videos - "Show me [video name]"
  * Mute - "Mute" 
  * Fast - "Fast" 
  * Pause - "Stop"
  * Resume Video - "Continue"
  * Close the video- "Destroy"
-* Weather - "Weather"
-* Cricket scores - "Cricket"
-* Time - "Time in [Any State in America]"
-* Quit **PENDING**

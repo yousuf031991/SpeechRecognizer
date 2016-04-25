@@ -17,5 +17,4 @@ Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
 * Weather - "Weather"
 * Cricket scores - "Cricket"
 * Time - **PENDING**
-* Contacts API **PENDING**
 * Quit **PENDING**

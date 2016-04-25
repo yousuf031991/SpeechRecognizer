@@ -9,10 +9,12 @@ Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
 * Hangouts call - "Call [person name]"
 * Get your calendar for the week - "Schedule"
 * See YouTube videos - "Show me [video name]"
- * Mute - "Mute" **PENDING**
- * Next song - "Next song" **PENDING**
- * Close the video- "Close video" **PENDING**
+ * Mute - "Mute" 
+ * Fast - "Fast" 
+ * Pause - "Stop"
+ * Resume Video - "Continue"
+ * Close the video- "Destroy"
 * Weather - "Weather"
 * Cricket scores - "Cricket"
 * Time - **PENDING**
-* Google search - "Search [something]" **PENDING**
+* Quit **PENDING**

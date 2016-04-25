@@ -22,6 +22,7 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel=
             "stylesheet">
     <link href="/intl/en/chrome/assets/common/css/chrome.min.css" rel="stylesheet">
+    <link href="hello.min.css" rel="stylesheet">
     <script src="//www.google.com/js/gweb/analytics/autotrack.js">
     </script>
     <script>
@@ -30,6 +31,32 @@
         });
     </script>
     <style>
+        #grid{
+          background-image: url("background2.png");
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-position-y: -50px;
+        }
+        #results{
+          background: white;
+          padding: 20px !important;
+        }
+        #results_id{
+          width: 130px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 0px;
+          border: none;
+        }
+        #info_start{
+          color:black;
+        }
+        .g-signin2{
+          position: fixed;
+          bottom : 30px;
+          left: 47%;
+        }
+        /* CSS changes by Digant */
         #info {
             font-size: 20px;
         }
@@ -86,6 +113,23 @@
         #copy > div {
             display: none;
             margin: 0 70px;
+        }
+
+        #mydiv
+        {
+            width    : 120px;
+            height   : 202px;
+            overflow : hidden;
+            position : relative;
+        }
+
+        #myiframe
+        {
+            position : absolute;
+            top      : -472px;
+            left     : -160px;
+            width    : 1280px;
+            height   : 1200px;
         }
 
     </style>
@@ -167,6 +211,7 @@
             </select>&nbsp;&nbsp; <select id="select_dialect">
         </select>
         </div>
+
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <div class="results_class" id="results_id">
             <pre id="results_par_id">
@@ -174,9 +219,15 @@
             <div id="youtube_div"></div>
             <div id="maps_div">
             </div>
+            <div id="weather_div"></div>
         </div>
         <input type="hidden" id="userEmail" value="">
+        <div id="hangouts-div"></div>
     </div>
+</div>
+<div id="mydiv">
+  <iframe src="http://www.timetemperature.com/tzus/california_time_zone.shtml" id="myiframe" scrolling="no">
+  </iframe>
 </div>
 <script src="https://apis.google.com/js/client.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -185,7 +236,14 @@
 <script src="auth.js"></script>
 <script src="search.js"></script>
 <script src="/intl/en/chrome/assets/common/js/chrome.min.js">
-</script> <script>
+</script>
+<script>
+    window.___gcfg = {
+        lang: 'en',
+        parsetags: 'onload'
+    };
+</script>
+<script>
     var chrmMenuBar = new chrm.ui.MenuBar();
     chrmMenuBar.decorate('nav');
     var chrmLogo = new chrm.ui.Logo('logo');
@@ -408,18 +466,39 @@
                 el.setAttribute('data-videoId', "");
                 el.setAttribute('data-operation', "");
                 checkYouTubeAuth();
-            } else if(final_transcript.toLowerCase().indexOf("directions")>-1){
-                document.getElementById('youtube_div').innerHTML = "";
+            }  else if(final_transcript.toLowerCase().indexOf("play")>-1) {
+                                document.getElementById('youtube_div').innerHTML = "";
+                var el = document.getElementById('id_hide');
+                el.setAttribute('data-videoId', "");
+                el.setAttribute('data-operation', "");
+                checkYouTubeAuth();
+            } else if(final_transcript.toLowerCase().indexOf("directions")>-1) {
                 var first = final_transcript.indexOf("from");
                 var second = final_transcript.indexOf("to");
                 var src = final_transcript.substring(first + 4, second);
                 var dst = final_transcript.substring(second);
                 initMap(src, dst, 1);
-            } else if(final_transcript.toLowerCase().indexOf("find me")>-1){
-                document.getElementById('youtube_div').innerHTML = "";
+            } else if (final_transcript.toLowerCase().indexOf("cricket")>-1){
+                list_cricket_matches();
+            }else if(final_transcript.toLowerCase().indexOf("find me")>-1) {
                 var secondstr = final_transcript.substring(7);
                 initMap(secondstr, "", 2);
+            }else if (final_transcript.toLowerCase().indexOf("cricket")>-1){
+                list_cricket_matches()
+            } else if(final_transcript.toLowerCase().indexOf("call")>-1){
+                console.log("CALL COMMAND RECEIVED");
+                var callee = final_transcript.substring(5);
+//                var hangouts_button = '<b> button </b>'
+//                $('#hangouts-div').html(hangouts_button);
+                renderHangoutButtons(callee);
+                $("#test").click();
+            } else if(final_transcript.toLowerCase().indexOf("weather")>-1) {
+                // var index = final_transcript.indexOf("in")
+                // var substr = final_transcript.substring(index + 3);
+                initWeather();
+
             }
+
             interim_span.innerHTML = linebreak(interim_transcript);
             if (final_transcript || interim_transcript) {
                 showButtons('inline-block');
@@ -427,7 +506,12 @@
         };
     }
 
-
+    function renderHangoutButtons(callee){
+        gapi.hangout.render('hangouts-div', {
+            'render': 'createhangout',
+            'invites' : "[{'id':" + callee + ",'invite_type': 'EMAIL'}]"
+        });
+    }
     function upgrade() {
         start_button.style.visibility = 'hidden';
         showInfo('info_upgrade');
@@ -443,7 +527,25 @@
     function capitalize(s) {
         return s.replace(first_char, function(m) { return m.toUpperCase(); });
     }
+    function list_cricket_matches()
+    {
+        $.getJSON("http://cricapi.com/api/cricket/", function(data, status){
+            //alert("Data: " + data['data'][0]['title'] + "\nStatus: " + status + typeof(data));
+            console.log("data length " + data['data'].length)
+            var html = '<table style="width:100% border-collapse:collapse align:center"><tr><th>Recent Matches</th></tr>';
 
+            for (var i = 0; i < data['data'].length; i++) {
+                console.log(data['data'][i]['title'])
+                if (i%2 == 0)
+                    html += '<tr bgcolor="orange" ><td style = "padding-top:.9em padding-bottom:.9em">' + data['data'][i]['title'] + '</td></tr>';
+                else
+                    html += '<tr bgcolor="yellow" ><td style = "padding-top:.9em padding-bottom:.9em">' + data['data'][i]['title'] + '</td></tr>';
+            }
+            html += "</tr></table>";
+
+            $(html).appendTo('#youtube_div');
+        });
+    }
     function createEmail() {
         var n = final_transcript.indexOf('message');
         if (n < 0 || n >= 80) {
@@ -597,6 +699,8 @@
             var resultpar = document.getElementById('results_par_id');
             var youtube_div = document.getElementById('youtube_div');
             var maps_div = document.getElementById('maps_div');
+            var hangouts_div = document.getElementById('hangouts-div');
+            var weather_div = document.getElementById('weather_div');
             if(resultpar != null) {
                 document.getElementById('results_par_id').innerHTML = "";
             }
@@ -606,9 +710,34 @@
             if(maps_div != null) {
                 document.getElementById('maps_div').innerHTML = "";
             }
+            if(hangouts_div != null) {
+                hangouts_div.innerHTML = "";
+            }
+            if(weather_div != null) {
+                document.getElementById('weather_div').innerHTML = "";
+            }
         }
 
     //    Calendar calls end
+    function list_cricket_matches()
+    {
+        $.getJSON("http://cricapi.com/api/cricket/", function(data, status){
+        //alert("Data: " + data['data'][0]['title'] + "\nStatus: " + status + typeof(data));
+        console.log("data length " + data['data'].length)
+        var html = '<table style="width:100% border-collapse:collapse align:center"><tr><th>Recent Matches</th></tr>';
+
+        for (var i = 0; i < data['data'].length; i++) {
+            console.log(data['data'][i]['title'])
+            if (i%2 == 0)
+                html += '<tr bgcolor="orange" ><td style = "padding-top:.9em padding-bottom:.9em">' + data['data'][i]['title'] + '</td></tr>';
+            else
+                html += '<tr bgcolor="yellow" ><td style = "padding-top:.9em padding-bottom:.9em">' + data['data'][i]['title'] + '</td></tr>';
+        }
+            html += "</tr></table>";
+
+        $(html).appendTo('#youtube_div');
+        });
+    }
         var player; 
     //  YouTube calls begin
         var OAUTH2_CLIENT_ID = '705090311833-g7arbk0k4rds033jdce4uleoieldaqva.apps.googleusercontent.com';
@@ -731,6 +860,28 @@
     }
 
     //sign in calls end
-</script>
-</body>
 
+    //weather starts
+    function initWeather() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+
+    }
+
+    function showPosition(position) {
+        var latitude =  position.coords.latitude;
+        var longitude = position.coords.longitude;
+        console.log(latitude);
+        console.log(longitude);
+        var iframeTime = '<iframe id="maps_iframe" width="100%" height="450" frameborder="0" style="border:0" src="http://forecast.io/embed/#lat='+latitude+'&lon='+longitude+'&name=your Location&color=#00aaff&font=Georgia&units=uk" allowfullscreen />';
+        console.log(iframeTime);
+        $('#weather_div').html(iframeTime);
+    }
+    //weather ends
+</script>
+
+
+</body>

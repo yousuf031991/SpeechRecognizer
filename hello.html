@@ -42,12 +42,11 @@
           padding: 20px !important;
         }
         #results_id{
-          width: 130px;
           margin-left: auto;
           margin-right: auto;
           margin-top: 0px;
           position: relative;
-          right: 140px;
+          left: 200px;
         }
         #copy{
           display: none;
@@ -482,8 +481,6 @@
             }else if(final_transcript.toLowerCase().indexOf("find me")>-1) {
                 var secondstr = final_transcript.substring(7);
                 initMap(secondstr, "", 2);
-            }else if (final_transcript.toLowerCase().indexOf("cricket")>-1){
-                list_cricket_matches()
             } else if(final_transcript.toLowerCase().indexOf("call")>-1){
                 console.log("CALL COMMAND RECEIVED");
                 var callee = final_transcript.substring(5);
@@ -734,7 +731,7 @@
         }
             html += "</tr></table>";
 
-        $(html).appendTo('#youtube_div');
+        $(html).appendTo('#weather_div');
         });
     }
         var player;

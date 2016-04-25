@@ -16,5 +16,5 @@ Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
  * Close the video- "Destroy"
 * Weather - "Weather"
 * Cricket scores - "Cricket"
-* Time - **PENDING**
+* Time - "Time in [Any State in America]"
 * Quit **PENDING**

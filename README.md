@@ -13,6 +13,6 @@ Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
  * Next song - "Next song" **PENDING**
  * Close the video- "Close video" **PENDING**
 * Weather - "Weather" **PENDING**
-* Cricket scores - **PENDING**
+* Cricket scores
 * Time - **PENDING**
 * Google search - "Search [something]" **PENDING**

@@ -11,7 +11,7 @@ Live site [at this link](http://speechrecognizer.herokuapp.com/).<br />
 * Weather - "Weather"
 * Cricket scores - "Cricket"
 * Time - "Time in [Any State in America]"
-* See YouTube videos - "Show me [video name]"
+* See YouTube videos - "Play [video name]"
  * Mute - "Mute" 
  * Fast - "Fast" 
  * Pause - "Stop"

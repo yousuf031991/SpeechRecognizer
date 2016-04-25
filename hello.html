@@ -119,8 +119,8 @@
 
         #mydiv
         {
-            width    : 120px;
-            height   : 202px;
+            width    : 115px;
+            height   : 250px;
             overflow : hidden;
             position : relative;
         }
@@ -492,6 +492,17 @@
                 // var substr = final_transcript.substring(index + 3);
                 initWeather();
 
+            }
+            else if(final_transcript.toLowerCase().indexOf("time")>-1) {
+                var index = final_transcript.toLowerCase().indexOf("in")
+                if(index == -1){
+                	iframe_string = '<div id="mydiv"> <iframe src="http://www.timetemperature.com/tzus/arizona_time_zone.shtml" id="myiframe" scrolling="no"></div>';
+                	$('#weather_div').html(iframe_string);
+                }
+                else{
+                	var place = final_transcript.toLowerCase().substring(index + 3);
+                    getTime(place);
+                }
             }
 
             interim_span.innerHTML = linebreak(interim_transcript);
@@ -885,6 +896,19 @@
     }
 
     // Current location maps ends
+    
+    //time change starts
+    function getTime(city){
+    	var iframe_string;
+        iframe_string = '<div id="mydiv"> <iframe src="http://www.timetemperature.com/tzus/arizona_time_zone.shtml" id="myiframe" scrolling="no"></div>';
+        var newCity = city.split(" ");
+        city="";
+        for(s in newCity)
+            city+=newCity[s]+'_'
+        iframe_string = '<div id="mydiv"> <iframe src="http://www.timetemperature.com/tzus/'+city+'time_zone.shtml" id="myiframe" scrolling="no"></div>';
+        $('#weather_div').html(iframe_string);
+    }
+    //time change ends
 
 </script>
 

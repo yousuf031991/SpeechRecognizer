@@ -115,6 +115,23 @@
             margin: 0 70px;
         }
 
+        #mydiv
+{
+    width    : 120px;
+    height   : 202px;
+    overflow : hidden;
+    position : relative;
+}
+
+#myiframe
+{
+    position : absolute;
+    top      : -472px;
+    left     : -160px;
+    width    : 1280px;
+    height   : 1200px;
+}
+
     </style>
     <style>
         a.c1 {font-weight: normal;}
@@ -205,6 +222,9 @@
         <input type="hidden" id="userEmail" value="">
         <div id="hangouts-div"></div>
     </div>
+</div>
+<div id="mydiv">
+  <iframe src="http://www.timetemperature.com/tzus/california_time_zone.shtml" id="myiframe" scrolling="no">
 </div>
 <script src="https://apis.google.com/js/client.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -675,7 +695,7 @@
         //alert("Data: " + data['data'][0]['title'] + "\nStatus: " + status + typeof(data));
         console.log("data length " + data['data'].length)
         var html = '<table style="width:100% border-collapse:collapse align:center"><tr><th>Recent Matches</th></tr>';
-       
+
         for (var i = 0; i < data['data'].length; i++) {
             console.log(data['data'][i]['title'])
             if (i%2 == 0)
@@ -781,4 +801,6 @@
     }
     //weather ends
 </script>
+
+
 </body>

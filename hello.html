@@ -540,7 +540,6 @@
             html += "</tr></table>";
 
             $(html).appendTo('#youtube_div');
-            startButton();
         });
     }
     function createEmail() {
@@ -731,9 +730,8 @@
                 html += '<tr bgcolor="yellow" ><td style = "padding-top:.9em padding-bottom:.9em">' + data['data'][i]['title'] + '</td></tr>';
         }
             html += "</tr></table>";
-
+            
           $(html).appendTo('#weather_div');
-          startButton();
         });
     }
         var player;
@@ -826,7 +824,6 @@
                 'onReady': onPlayerReady
             }
         });
-        startButton();
     }
 
     function onPlayerReady(event, player) {
@@ -841,7 +838,6 @@
             iframe_string = '<iframe id="maps_iframe" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBQBK3oXMA6yuVWla9b8JLdYioK3Vlc8EQ&q='+src+'" allowfullscreen />';
         }
         $('#maps_div').html(iframe_string);
-        startButton();
     }
     // Maps calls end
 	//AIzaSyBQBK3oXMA6yuVWla9b8JLdYioK3Vlc8EQ
@@ -876,7 +872,6 @@
         var iframeTime = '<iframe id="maps_iframe" width="100%" height="450" frameborder="0" style="border:0" src="http://forecast.io/embed/#lat='+latitude+'&lon='+longitude+'&name=your Location&color=#00aaff&font=Georgia&units=uk" allowfullscreen />';
         console.log(iframeTime);
         $('#weather_div').html(iframeTime);
-        startButton();
     }
     //weather ends
 </script>
